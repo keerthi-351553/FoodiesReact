@@ -5,20 +5,23 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const config = require('../config/');
 const logger = require('../applogger');
+const passport = require('../authenticate/passport');
+const connectflash = require('connect-flash');
 
 function createApp() {
   const app = express();
   return app;
 }
 
-/*function setupStaticRoutes(app) {
+function setupStaticRoutes(app) {
   app.use(express.static(path.resolve(__dirname, '../', 'webclient')));
   return app;
-}*/
+}
 
 function setupRestRoutes(app) {
-  console.log('Inside service setupRestRoutes');
+  //console.log('Inside service setupRestRoutes');
   app.use('/users', require(path.join(__dirname, './users')));
+  app.use('/Restaurant', require(path.join(__dirname, './Restaurant')));
   //  MOUNT YOUR REST ROUTE HERE
   //  Eg:
 
@@ -49,14 +52,18 @@ function setupMiddlewares(app) {
   app.use(bodyParser.urlencoded({
     extended: false
   }));
+  app.use(passport.initialize());
+   app.use(passport.session());
+   app.use(connectflash());
+   app.use(require('express-session')({secret:'accesskey'}));
 
   const compression = require('compression');
   app.use(compression());
 
-  app.use(function(req,res,next)
+  app.use(function(req, res, next)
   {
-    res.header('Access-Control-Allow-Origin',"*");
-    res.header('Access-Control-Allow-Method','GET,POST,PUT,DELETE');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Method', 'GET,POST,PUT,DELETE');
     res.header('Access-Control-Allow-Headers',
       'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     next();
@@ -75,10 +82,21 @@ function setupWebpack(app) {
     const webpackCompiler = webpack(webpackConfig);
 
     app.use(webpackHotMiddleware(webpackCompiler));
-    /*app.use(webpackDevMiddleware(webpackCompiler, {
-      noInfo: true,
-      publicPath: webpackConfig.output.publicPath
-    }));*/
+    app.use(webpackDevMiddleware(webpackCompiler, {
+  noInfo: true,
+  publicPath: webpackConfig.output.publicPath,
+  stats: {
+      colors: true
+  },
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000
+  }
+}));
+    // app.use(webpackDevMiddleware(webpackCompiler, {
+    //   noInfo: true,
+    //   publicPath: webpackConfig.output.publicPath
+    // }));
   }
   return app;
 }
@@ -111,7 +129,7 @@ function setupMongooseConnections() {
 // App Constructor function is exported
 module.exports = {
   createApp: createApp,
- // setupStaticRoutes: setupStaticRoutes,
+  setupStaticRoutes: setupStaticRoutes,
   setupRestRoutes: setupRestRoutes,
   setupMiddlewares: setupMiddlewares,
   setupMongooseConnections: setupMongooseConnections,

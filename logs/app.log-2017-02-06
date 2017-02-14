@@ -1,0 +1,8 @@
+[06 02 2017 04:22:46.260] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zomatoApp
+[06 02 2017 04:22:46.686] [DEBUG] - add router
+[06 02 2017 04:22:46.762] [DEBUG] - delete router
+[06 02 2017 04:22:46.791] [DEBUG] - update router
+[06 02 2017 10:04:53.583] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zomatoApp
+[06 02 2017 10:10:01.478] [DEBUG] - Mongoose is now disconnected..!
+[06 02 2017 10:11:37.965] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zomatoApp
+[06 02 2017 10:13:59.643] [DEBUG] - Received request{"userName":"bob","password":"bob"}

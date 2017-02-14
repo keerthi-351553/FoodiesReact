@@ -1,0 +1,12 @@
+[12 02 2017 05:30:00.208] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zomatoApp
+[12 02 2017 05:32:13.874] [DEBUG] - errors
+[12 02 2017 05:32:48.068] [DEBUG] - errors
+[12 02 2017 05:33:29.790] [DEBUG] - errors
+[12 02 2017 05:33:44.118] [DEBUG] - errors
+[12 02 2017 05:46:52.489] [DEBUG] - errors
+[12 02 2017 05:58:03.925] [DEBUG] - Mongoose is now disconnected..!
+[12 02 2017 06:55:05.390] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zomatoApp
+[12 02 2017 06:56:02.856] [DEBUG] - errors
+[12 02 2017 06:56:36.525] [DEBUG] - errors
+[12 02 2017 06:57:47.095] [DEBUG] - errors
+[12 02 2017 06:58:11.954] [DEBUG] - errors
